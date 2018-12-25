@@ -24,7 +24,7 @@ console.log(result); // true
 ## Modules
 
 ### Cookie
-操作cookie的方法集合
+#### 操作cookie的方法集合
 |方法名称|说明|返回值|
 | :--: | :--: | :--: |
 |setCookie|设置Cookie|null|
