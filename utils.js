@@ -5,13 +5,13 @@
  * @description 常用工具封装
  * @usage_method import { name } from ''
 */
-export const Cookie = {
+const Cookie = {
   /**
    * @author hmagic
    * @date 2018-12-24
    * @description 操作cookie的方法集合
   */
-  setCookie: (cname, cvalue, exdays) => {
+  setCookie: function (cname, cvalue, exdays) {
     /**
      * @author hmagic
      * @date 2018-12-24
@@ -28,7 +28,7 @@ export const Cookie = {
     let expires = 'expires=' + d.toGMTString()
     document.cookie = cname + '=' + cvalue + '; ' + expires
   },
-  getCookie: (name) => {
+  getCookie: function (name) {
     /**
      * @author hmagic
      * @date 2018-12-24
@@ -52,13 +52,13 @@ export const Cookie = {
   }
 }
 
-export const FormatDate = {
+const FormatDate = {
   /**
    * @author hmagic
    * @date 2018-12-24
    * @description 时间戳格式化
   */
-  ym: (time) => {
+  ym: function (time) {
     /**
      * @author hmagic
      * @date 2018-12-24
@@ -75,7 +75,7 @@ export const FormatDate = {
     m = m < 10 ? ('0' + m) : m
     return `${y}-${m}`
   },
-  md: (time) => {
+  md: function (time) {
     /**
      * @author hmagic
      * @date 2018-12-24
@@ -93,7 +93,7 @@ export const FormatDate = {
     d = d < 10 ? ('0' + d) : d
     return `${m}-${d}`
   },
-  ymd: (time) => {
+  ymd: function (time) {
     /**
      * @author hmagic
      * @date 2018-12-24
@@ -112,7 +112,7 @@ export const FormatDate = {
     d = d < 10 ? ('0' + d) : d
     return `${y}-${m}-${d}`
   },
-  hm: (time) => {
+  hm: function (time) {
     /**
      * @author hmagic
      * @date 2018-12-24
@@ -131,7 +131,7 @@ export const FormatDate = {
       return `${h}:${m}`
     }
   },
-  ms: (time) => {
+  ms: function (time) {
     /**
      * @author hmagic
      * @date 2018-12-24
@@ -150,7 +150,7 @@ export const FormatDate = {
       return `${m}:${s}`
     }
   },
-  hms: (time) => {
+  hms: function (time) {
     /**
      * @author hmagic
      * @date 2018-12-24
@@ -171,7 +171,7 @@ export const FormatDate = {
       return `${h}:${m}:${s}`
     }
   },
-  getDateTime: (time) => {
+  getDateTime: function (time) {
     /**
      * @author hmagic
      * @date 2018-12-24
@@ -182,23 +182,10 @@ export const FormatDate = {
     if (!time) {
       return ''
     }
-    let _date = new Date(time * 1000)
-    let y = _date.getFullYear()
-    let M = _date.getMonth() + 1
-    M = M < 10 ? ('0' + M) : M
-    let d = _date.getDate()
-    d = d < 10 ? ('0' + d) : d
-
-    let h = _date.getHours()
-    let m = _date.getMinutes()
-    let s = _date.getSeconds()
-    h = h < 10 ? ('0' + h) : h
-    m = m < 10 ? ('0' + m) : m
-    s = s < 10 ? ('0' + s) : s
-    return `${y}-${M}-${d} ${h}:${m}:${s}`
+    return this.ymd(time) + ' ' + this.hms(time)
   }
 }
-export const Regular = {
+const Regular = {
   /**
    * @author hmagic
    * @date 2018-12-24
@@ -209,7 +196,7 @@ export const Regular = {
   idCardReg: '^(\\d{6})(\\d{4})(\\d{2})(\\d{2})(\\d{3})([0-9]|X|x)$',
   urlReg: 'http(s)?://([\\w-]+\\.)+[\\w-]+(/[\\w- ./?%&=]*)?',
   integerReg: '^[0-9]\\d*$',
-  isPhone: (str) => {
+  isPhone: function (str) {
     /**
      * @author hmagic
      * @date 2018-12-24
@@ -221,7 +208,7 @@ export const Regular = {
     const reg = new RegExp(this.phoneReg)
     return reg.test(str)
   },
-  isEmail: (str) => {
+  isEmail: function (str) {
     /**
      * @author hmagic
      * @date 2018-12-24
@@ -233,7 +220,7 @@ export const Regular = {
     const reg = new RegExp(this.emailReg)
     return reg.test(str)
   },
-  isIdCard: (str) => {
+  isIdCard: function (str) {
     /**
      * @author hmagic
      * @date 2018-12-24
@@ -245,7 +232,7 @@ export const Regular = {
     const reg = new RegExp(this.idCardReg)
     return reg.test(str)
   },
-  isUrl: (str) => {
+  isUrl: function (str) {
     /**
      * @author hmagic
      * @date 2018-12-24
@@ -257,7 +244,7 @@ export const Regular = {
     const reg = new RegExp(this.urlReg)
     return reg.test(str)
   },
-  isInteger: (number) => {
+  isInteger: function (number) {
     /**
      * @author hmagic
      * @date 2018-12-24
@@ -271,7 +258,7 @@ export const Regular = {
   }
 }
 
-export const FileType = {
+const FileType = {
   /**
    * @author hmagic
    * @date 2018-12-24
@@ -281,3 +268,4 @@ export const FileType = {
   image: 'image/jpeg,image/jpg,image/png',
   video: 'audio/mp4,video/mp4'
 }
+module.exports = { Cookie, FormatDate, Regular, FileType }
