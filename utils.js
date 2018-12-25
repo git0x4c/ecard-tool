@@ -20,6 +20,9 @@ export const Cookie = {
      * @param { cvalue } cookie值
      * @param { exdays } cookie过期天数
     */
+    if(!exdays) {
+      exdays = 1
+    }
     let d = new Date()
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000))
     let expires = 'expires=' + d.toGMTString()
