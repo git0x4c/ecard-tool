@@ -1,0 +1,14 @@
+{
+  "name": "ecard-tool",
+  "version": "0.0.1",
+  "description": "ecard tool library",
+  "main": "utils.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "keywords": [
+    "javascript"
+  ],
+  "author": "hmagic",
+  "license": "ISC"
+}
