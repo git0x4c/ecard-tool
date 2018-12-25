@@ -1,14 +1,22 @@
 {
   "name": "ecard-tool",
   "version": "0.0.1",
-  "description": "ecard tool library",
+  "description": "广州易林电子商务有限公司前端业务常用JavaScript函数封装",
   "main": "utils.js",
   "scripts": {
-    "test": "npm test"
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/git0x4c/ecard-tool.git"
   },
   "keywords": [
     "javascript"
   ],
   "author": "hmagic",
-  "license": "ISC"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/git0x4c/ecard-tool/issues"
+  },
+  "homepage": "https://github.com/git0x4c/ecard-tool#readme"
 }
