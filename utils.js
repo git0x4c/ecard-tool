@@ -182,7 +182,20 @@ export const FormatDate = {
     if (!time) {
       return ''
     }
-    return this.ymd(time) + ' ' + this.hms(time)
+    let _date = new Date(time * 1000)
+    let y = _date.getFullYear()
+    let M = _date.getMonth() + 1
+    M = M < 10 ? ('0' + M) : M
+    let d = _date.getDate()
+    d = d < 10 ? ('0' + d) : d
+
+    let h = _date.getHours()
+    let m = _date.getMinutes()
+    let s = _date.getSeconds()
+    h = h < 10 ? ('0' + h) : h
+    m = m < 10 ? ('0' + m) : m
+    s = s < 10 ? ('0' + s) : s
+    return `${y}-${M}-${d} ${h}:${m}:${s}`
   }
 }
 export const Regular = {
