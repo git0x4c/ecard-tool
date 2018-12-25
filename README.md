@@ -40,6 +40,6 @@ console.log(value)
 ```
 |参数名称|说明|参数格式|默认值|必填|
 | :-: | :-: | :-: | :-: | :-: |
-|cname|cookie名字|string|-|[x]|
-|cvalue|cookie值|string|-|[x]|
-|exdays|过期天数|integer|1|[x]|
+|cname|cookie名字|string|-|√|
+|cvalue|cookie值|string|-|√|
+|exdays|过期天数|integer|1|√|
