@@ -268,4 +268,42 @@ const FileType = {
   image: 'image/jpeg,image/jpg,image/png',
   video: 'audio/mp4,video/mp4'
 }
-module.exports = { Cookie, FormatDate, Regular, FileType }
+
+const FormatMoney = {
+  /**
+   * @author hmagic
+   * @date 2018-12-29
+   * @description 金额格式化
+  */
+  currency: function(num) {
+    /**
+     * @author hmagic
+     * @date 2018-12-29
+     * @description 格式化货币 4000 -> 4,000.00 保留两位数
+     * @param { num } 待转化的金额
+     * @returns Number
+    */
+    num = num.toString().replace(/\$|\,/g,'')
+    if(isNaN(num)) num = "0"
+    sign = (num == (num = Math.abs(num)))
+    num = Math.floor(num*100+0.50000000001);
+    cents = num%100;
+    num = Math.floor(num/100).toString();
+    if(cents<10) cents = "0" + cents;
+    for (var i = 0; i < Math.floor((num.length-(1+i))/3); i++) {
+      num = num.substring(0,num.length-(4*i+3)) + ',' + num.substring(num.length-(4*i+3))
+    }
+    return (((sign)?'':'-') + num + '.' + cents)
+  },
+  limit: function(num) {
+    /**
+     * @author hmagic
+     * @date 2018-12-29
+     * @description 限制输入框只能输入到小数点后两位
+     * @param { num } 输入的内容
+     * @returns Number or null
+    */
+    return (num.match(/^\d*(\.?\d{0,2})/g)[0]) || null
+  }
+}
+module.exports = { Cookie, FormatDate, Regular, FileType, FormatMoney }

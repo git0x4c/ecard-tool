@@ -104,3 +104,20 @@ let phoneReg = Regular.phoneReg // '^1[3,4,5,6,7,8,9]{1}\\d{9}$'
 import { FileType } from 'ecard-tool'
 let video = FileType.video // 'audio/mp4,video/mp4'
 ```
+
+### FormatMoney
+#### 格式化金额
+|方法名称|说明|返回值|
+| :--: | :--: | :--: |
+|currency|格式化货币并保留两位数|String -> eg: 1,234.00|
+|limit|限制输入框小数点后两位|String|
+
+```javascript
+import { FormatMoney } from 'ecard-tool'
+let money = 4000
+console.log( FormatMoney.currency(money) ) // 4,000.00
+```  
+```html
+// for vuejs
+<input type="number" v-model="money" @input="money = FormatMoney.limit(money)" />
+```
