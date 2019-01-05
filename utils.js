@@ -303,7 +303,8 @@ const FormatMoney = {
      * @param { num } 输入的内容
      * @returns Number or null
     */
-    return (num.match(/^\d*(\.?\d{0,2})/g)[0]) || null
+    num += '';
+    return (num.match(/^\d*(\.?\d{0,2})/g)[0]);
   }
 }
 module.exports = { Cookie, FormatDate, Regular, FileType, FormatMoney }
