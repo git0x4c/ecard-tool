@@ -1,8 +1,8 @@
 {
   "name": "ecard-tool",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "广州易林电子商务有限公司前端业务常用JavaScript函数封装",
-  "main": "utils.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,12 +11,16 @@
     "url": "git+https://github.com/git0x4c/ecard-tool.git"
   },
   "keywords": [
-    "javascript" 
+    "javascript"
   ],
   "author": "hmagic",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/git0x4c/ecard-tool/issues"
   },
-  "homepage": "https://github.com/git0x4c/ecard-tool#readme"
+  "homepage": "https://github.com/git0x4c/ecard-tool#readme",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1"
+  }
 }
