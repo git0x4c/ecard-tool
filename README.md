@@ -82,6 +82,7 @@ console.log(result) // 2018-12-03 15:24:05
 |isIdcard|验证身份证|boolean|
 |isUrl|验证url地址|boolean|
 |isInteger|验证正整数|boolean|
+|isMoney|验证字符串是否为金额|boolean|
 ||||
   
 |常量名称|说明|返回值|
@@ -90,6 +91,7 @@ console.log(result) // 2018-12-03 15:24:05
 |emailReg|邮箱正则|String|
 |idCardReg|身份证(中国)正则|String|
 |integerReg|正整数正则|String|
+|money|货币金额正则|String|
 ||||
   
 ```javascript

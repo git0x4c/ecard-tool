@@ -198,6 +198,7 @@ var Regular = {
   idCardReg: '^(\\d{6})(\\d{4})(\\d{2})(\\d{2})(\\d{3})([0-9]|X|x)$',
   urlReg: 'http(s)?://([\\w-]+\\.)+[\\w-]+(/[\\w- ./?%&=]*)?',
   integerReg: '^[0-9]\\d*$',
+  money: /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/,
   isPhone: function isPhone(str) {
     /**
      * @author hmagic
@@ -257,6 +258,18 @@ var Regular = {
     if (number < 0) return false;
     var reg = new RegExp(this.integerReg);
     return reg.test(number);
+  },
+  isMoney: function isMoney(val) {
+    /**
+     * @author hmagic
+     * @date 2019-1-19
+     * @description 验证金额
+     * @param { number } 待验证的数字
+     * @returns { boolean }
+    */
+    if (val < 0) return false;
+    var reg = this.money;
+    return reg.test(val);
   }
 };
 
