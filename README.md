@@ -26,8 +26,10 @@ console.log(result); // true
 #### 操作cookie的方法集合
 |方法名称|说明|返回值|
 | :--: | :--: | :--: |
-|setCookie(cname, cvalue, exdays)|设置Cookie|null|
+|setCookie(cname, cvalue, exdays)|设置Cookie|-|
 |getCookie(cname)|读取Cookie|String|
+|delCookie(cname)|删除cookie|-|
+  
 ```javascript
 import { Cookie } from 'ecard-tool'
 let cname = 'cookie-name'
