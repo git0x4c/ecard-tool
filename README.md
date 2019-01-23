@@ -77,14 +77,14 @@ console.log(result) // 2018-12-03 15:24:05
   
 #### 常用正则及判断
   
-|方法名称|说明|返回值|
-| :--: | :--: | :--: |
-|isPhone|验证手机号码(中国大陆)|boolean|
-|isEmail|验证邮箱地址|boolean|
-|isIdcard|验证身份证|boolean|
-|isUrl|验证url地址|boolean|
-|isInteger|验证正整数|boolean|
-|isMoney|验证字符串是否为金额|boolean|
+|方法名称|说明|返回值|备注|
+| :--: | :--: | :--: | :--: |
+|isPhone(str)|验证手机号码(中国大陆)|boolean|
+|isEmail(str)|验证邮箱地址|boolean|
+|isIdCard(str)|验证身份证|boolean|特定算法准确判断国内身份证(包含国际友人在华身份证)|
+|isUrl(str)|验证url地址|boolean|
+|isInteger(str)|验证正整数|boolean|
+|isMoney(str)|验证字符串是否为金额|boolean|
 ||||
   
 |常量名称|说明|返回值|
