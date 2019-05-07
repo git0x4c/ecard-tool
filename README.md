@@ -85,6 +85,8 @@ console.log(result) // 2018-12-03 15:24:05
 |isUrl(str)|验证url地址|boolean|
 |isInteger(str)|验证正整数|boolean|
 |isMoney(str)|验证字符串是否为金额|boolean|
+|isChineseName(str)|验证字符串是否为中文名字|object|
+|isBankCard(str)|验证字符串是否为国内储蓄卡/信用卡|boolean|采用LUHN算法 支持 [14, 19] 位数字
 ||||
   
 |常量名称|说明|返回值|
@@ -94,6 +96,7 @@ console.log(result) // 2018-12-03 15:24:05
 |idCardReg|身份证(中国)正则|String|
 |integerReg|正整数正则|String|
 |money|货币金额正则|String|
+|chinese|中文正则|String|
 ||||
   
 ```javascript

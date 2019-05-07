@@ -204,6 +204,7 @@ const Regular = {
   urlReg: 'http(s)?://([\\w-]+\\.)+[\\w-]+(/[\\w- ./?%&=]*)?',
   integerReg: '^[0-9]\\d*$',
   money: /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/,
+  chinese: '^[\u4E00-\u9FA5]+$',
   isPhone: function (str) {
     /**
      * @author hmagic
@@ -402,6 +403,44 @@ const Regular = {
    if (val < 0) return false
    const reg = this.money
    return reg.test(val)
+  },
+  isChineseName: function (val) {
+    /**
+     * @author hmagic
+     * @date 2019-5-7
+     * @description 判断中文名字
+     * @param { val } 待验证的字符串
+     * @returns { Object }
+    */
+    if(val === undefined || !val) {
+      return {
+        bool: false,
+        mes: '姓名不能为空'
+      }
+    }
+    if(val.length < 2) {
+      return {
+        bool: false,
+        mes: '姓名不能少于两个汉字'
+      }
+    }
+    let reg = new RegExp(this.chinese)
+    if(!reg.test(val)) {
+        // 不全是中文
+        return {
+          bool: false,
+          mes: '姓名不能含有非中文字符'
+        }
+    } else {
+      return {
+        bool: true,
+        mes: ''
+      }
+    }
+  },
+  isBankCard: function (val) {
+    let checkBankCard = require('./util/bankCardValidator')
+    return checkBankCard(val)
   }
 }
 
