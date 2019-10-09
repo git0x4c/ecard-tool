@@ -439,6 +439,72 @@ var Regular = {
   isBankCard: function isBankCard(val) {
     var checkBankCard = require('./util/bankCardValidator');
     return checkBankCard(val);
+  },
+  isNumber: function isNumber(val) {
+    var reg = new RegExp('^[0-9]*$');
+    return reg.test(val);
+  },
+  isAccount: function isAccount(str) {
+    var min = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 6;
+    var max = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 20;
+
+    if (max < min) {
+      // 异或操作交换变量
+      min = (max = (min ^= max) ^ max) ^ min;
+    }
+    var reg = new RegExp('^\\w{' + min + ',' + max + '}$');
+    if (!str) {
+      return {
+        bool: false,
+        text: '请输入账号'
+      };
+    }
+    if (str.length < min || str.length > max) {
+      return {
+        bool: false,
+        text: '账号长度需要在' + min + '~' + max + '之间,现长度为' + str.length
+      };
+    }
+    if (!reg.test(str)) {
+      return {
+        bool: false,
+        text: '账号长度在' + min + '~' + max + '之间且只能包含字母、数字或下划线'
+      };
+    }
+    return {
+      bool: true
+    };
+  },
+  isPassword: function isPassword(str) {
+    var min = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 6;
+    var max = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 20;
+
+    if (max < min) {
+      // 异或操作交换变量
+      min = (max = (min ^= max) ^ max) ^ min;
+    }
+    var reg = new RegExp('^[a-zA-Z0-9]\\w{' + min + ',' + max + '}$');
+    if (!str) {
+      return {
+        bool: false,
+        text: '请输入密码'
+      };
+    }
+    if (str.length < min || str.length > max) {
+      return {
+        bool: false,
+        text: '\u5BC6\u7801\u957F\u5EA6\u9700\u8981\u5728' + min + '~' + max + '\u4E4B\u95F4,\u73B0\u957F\u5EA6\u4E3A' + str.length
+      };
+    }
+    if (!reg.test(str)) {
+      return {
+        bool: false,
+        text: '\u5BC6\u7801\u683C\u5F0F\u4E3A\u5B57\u6BCD\u6216\u6570\u5B57\u5F00\u5934\uFF0C\u957F\u5EA6\u5728' + min + '~' + max + '\u4E4B\u95F4\u4E14\u53EA\u80FD\u5305\u542B\u5B57\u6BCD\u3001\u6570\u5B57\u6216\u4E0B\u5212\u7EBF'
+      };
+    }
+    return {
+      bool: true
+    };
   }
 };
 
@@ -491,4 +557,24 @@ var FormatMoney = {
     return num.match(/^\d*(\.?\d{0,2})/g)[0];
   }
 };
-module.exports = { Cookie: Cookie, FormatDate: FormatDate, Regular: Regular, FileType: FileType, FormatMoney: FormatMoney };
+
+var Download = function Download(url, data) {
+  var obj = '';
+  if (data) {
+    try {
+      obj = new URLSearchParams(data);
+    } catch (error) {
+      var tempArr = [];
+      for (var i in data) {
+        var key = encodeURIComponent(i);
+        var value = encodeURIComponent(data[i]);
+        tempArr.push(key + '=' + value);
+      }
+      obj = tempArr.join('&');
+    }
+  } else {
+    obj = '';
+  }
+  window.open(url + obj, '_blank');
+};
+module.exports = { Cookie: Cookie, FormatDate: FormatDate, Regular: Regular, FileType: FileType, FormatMoney: FormatMoney, Download: Download };

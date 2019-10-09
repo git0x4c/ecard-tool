@@ -1,5 +1,5 @@
 let utils = require('./index')
-let time = 1543821845
+/* let time = 1543821845
 let result = utils.FormatDate.getDateTime(time)
 console.log(result) // 2018-12-03 15:24:05
 
@@ -15,4 +15,11 @@ let chineseName2 = '李四2'
 console.log(utils.Regular.isChineseName(chineseName2))
 
 let bankCardNumber = '6223394932574507' // 鄞州农村合作银行(借记卡)
-console.log(utils.Regular.isBankCard(bankCardNumber))
+console.log(utils.Regular.isBankCard(bankCardNumber)) */
+
+let account = 'admin'
+console.log(utils.Regular.isAccount(account, 5, 10))
+console.log(utils.Regular.isAccount('112233'))
+
+console.log(utils.Regular.isPassword(111211111))
+console.log(utils.Regular.isPassword('111211111'))

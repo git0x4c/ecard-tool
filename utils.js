@@ -441,6 +441,64 @@ const Regular = {
   isBankCard: function (val) {
     let checkBankCard = require('./util/bankCardValidator')
     return checkBankCard(val)
+  },
+  isNumber: function (val) {
+    let reg = new RegExp('^[0-9]*$')
+    return reg.test(val)
+  },
+  isAccount: function (str, min=6, max=20) {
+    if(max < min) { // 异或操作交换变量
+      min = (max = (min ^= max) ^ max) ^ min
+    }
+    let reg = new RegExp(`^\\w{${min},${max}}$`)
+    if(!str) {
+      return {
+        bool: false,
+        text: '请输入账号'
+      }
+    }
+    if(str.length < min || str.length > max) {
+      return {
+        bool: false,
+        text: '账号长度需要在' + min + '~' + max + '之间,现长度为' + str.length
+      }
+    }
+    if(!reg.test(str)) {
+      return {
+        bool: false,
+        text: '账号长度在' + min + '~' + max + '之间且只能包含字母、数字或下划线'
+      }
+    }
+    return {
+      bool: true
+    }
+  },
+  isPassword: function (str, min=6, max=20) {
+    if(max < min) { // 异或操作交换变量
+      min = (max = (min ^= max) ^ max) ^ min
+    } 
+    let reg = new RegExp(`^[a-zA-Z0-9]\\w{${min},${max}}$`)
+    if(!str) {
+      return {
+        bool: false,
+        text: '请输入密码'
+      }
+    }
+    if(str.length < min || str.length > max) {
+      return {
+        bool: false,
+        text: `密码长度需要在${min}~${max}之间,现长度为${str.length}`
+      }
+    }
+    if(!reg.test(str)) {
+      return {
+        bool: false,
+        text: `密码格式为字母或数字开头，长度在${min}~${max}之间且只能包含字母、数字或下划线`
+      }
+    }
+    return {
+      bool: true
+    }
   }
 }
 
@@ -493,4 +551,24 @@ const FormatMoney = {
     return (num.match(/^\d*(\.?\d{0,2})/g)[0]);
   }
 }
-module.exports = { Cookie, FormatDate, Regular, FileType, FormatMoney }
+
+const Download = function (url, data) {
+  let obj = ''
+  if(data) {
+    try {
+      obj = new URLSearchParams(data)
+    } catch (error) {
+      var tempArr = [];
+      for (var i in data) {
+          var key = encodeURIComponent(i);
+          var value = encodeURIComponent(data[i]);
+          tempArr.push(key + '=' + value);
+      }
+      obj = tempArr.join('&');
+    }
+  } else {
+    obj = ''
+  }
+  window.open(url + obj, '_blank')
+}
+module.exports = { Cookie, FormatDate, Regular, FileType, FormatMoney, Download }
