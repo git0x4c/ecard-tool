@@ -473,7 +473,7 @@ const Regular = {
       bool: true
     }
   },
-  isPassword: function (str, min=6, max=20) {
+  isPassword: function (str, min=5, max=19) {
     if(max < min) { // 异或操作交换变量
       min = (max = (min ^= max) ^ max) ^ min
     } 
@@ -484,16 +484,16 @@ const Regular = {
         text: '请输入密码'
       }
     }
-    if(str.length < min || str.length > max) {
+    if(str.length < (min + 1) || str.length > (max + 1)) {
       return {
         bool: false,
-        text: `密码长度需要在${min}~${max}之间,现长度为${str.length}`
+        text: `密码长度需要在${min + 1}~${max + 1}之间,现长度为${str.length}`
       }
     }
     if(!reg.test(str)) {
       return {
         bool: false,
-        text: `密码格式为字母或数字开头，长度在${min}~${max}之间且只能包含字母、数字或下划线`
+        text: `密码格式为字母或数字开头，长度在${min + 1}~${max + 1}之间且只能包含字母、数字或下划线`
       }
     }
     return {

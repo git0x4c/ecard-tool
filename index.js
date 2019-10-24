@@ -476,8 +476,8 @@ var Regular = {
     };
   },
   isPassword: function isPassword(str) {
-    var min = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 6;
-    var max = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 20;
+    var min = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 5;
+    var max = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 19;
 
     if (max < min) {
       // 异或操作交换变量
@@ -490,16 +490,16 @@ var Regular = {
         text: '请输入密码'
       };
     }
-    if (str.length < min || str.length > max) {
+    if (str.length < min + 1 || str.length > max + 1) {
       return {
         bool: false,
-        text: '\u5BC6\u7801\u957F\u5EA6\u9700\u8981\u5728' + min + '~' + max + '\u4E4B\u95F4,\u73B0\u957F\u5EA6\u4E3A' + str.length
+        text: '\u5BC6\u7801\u957F\u5EA6\u9700\u8981\u5728' + (min + 1) + '~' + (max + 1) + '\u4E4B\u95F4,\u73B0\u957F\u5EA6\u4E3A' + str.length
       };
     }
     if (!reg.test(str)) {
       return {
         bool: false,
-        text: '\u5BC6\u7801\u683C\u5F0F\u4E3A\u5B57\u6BCD\u6216\u6570\u5B57\u5F00\u5934\uFF0C\u957F\u5EA6\u5728' + min + '~' + max + '\u4E4B\u95F4\u4E14\u53EA\u80FD\u5305\u542B\u5B57\u6BCD\u3001\u6570\u5B57\u6216\u4E0B\u5212\u7EBF'
+        text: '\u5BC6\u7801\u683C\u5F0F\u4E3A\u5B57\u6BCD\u6216\u6570\u5B57\u5F00\u5934\uFF0C\u957F\u5EA6\u5728' + (min + 1) + '~' + (max + 1) + '\u4E4B\u95F4\u4E14\u53EA\u80FD\u5305\u542B\u5B57\u6BCD\u3001\u6570\u5B57\u6216\u4E0B\u5212\u7EBF'
       };
     }
     return {
