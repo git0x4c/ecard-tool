@@ -571,4 +571,42 @@ const Download = function (url, data) {
   }
   window.open(url + obj, '_blank')
 }
-module.exports = { Cookie, FormatDate, Regular, FileType, FormatMoney, Download }
+
+const Request = {
+  // 防抖
+  debounce: (fn, delay = 1000) => {
+    let timer = null
+    return function () {
+      let context = this
+      let args = arguments
+      clearTimeout(timer)
+      timer = setTimeout(() => {
+        fn.apply(context, args)
+      }, delay)
+    }
+  },
+
+  // 节流
+  throttle: (fn, delay = 1000, immediate = false) => {
+    let timer = null
+    return function () {
+      let context = this
+      let args = arguments
+      if (timer) clearTimeout(timer)
+      if (immediate) { // 是否立即执行
+        let doNow = !timer
+        timer = setTimeout(() => {
+          timer = null
+        }, delay)
+        if (doNow) {
+          fn.apply(context, args)
+        }
+      } else {
+        timer = setTimeout(() => {
+          fn.apply(context, args)
+        }, delay)
+      }
+    }
+  }
+}
+module.exports = { Cookie, FormatDate, Regular, FileType, FormatMoney, Download, Request }

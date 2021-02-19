@@ -577,4 +577,48 @@ var Download = function Download(url, data) {
   }
   window.open(url + obj, '_blank');
 };
-module.exports = { Cookie: Cookie, FormatDate: FormatDate, Regular: Regular, FileType: FileType, FormatMoney: FormatMoney, Download: Download };
+
+var Request = {
+  // 防抖
+  debounce: function debounce(fn) {
+    var delay = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1000;
+
+    var timer = null;
+    return function () {
+      var context = this;
+      var args = arguments;
+      clearTimeout(timer);
+      timer = setTimeout(function () {
+        fn.apply(context, args);
+      }, delay);
+    };
+  },
+
+  // 节流
+  throttle: function throttle(fn) {
+    var delay = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1000;
+    var immediate = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+    var timer = null;
+    return function () {
+      var context = this;
+      var args = arguments;
+      if (timer) clearTimeout(timer);
+      if (immediate) {
+        // 是否立即执行
+        var doNow = !timer;
+        timer = setTimeout(function () {
+          timer = null;
+        }, delay);
+        if (doNow) {
+          fn.apply(context, args);
+        }
+      } else {
+        timer = setTimeout(function () {
+          fn.apply(context, args);
+        }, delay);
+      }
+    };
+  }
+};
+module.exports = { Cookie: Cookie, FormatDate: FormatDate, Regular: Regular, FileType: FileType, FormatMoney: FormatMoney, Download: Download, Request: Request };

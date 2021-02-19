@@ -17,9 +17,16 @@ console.log(utils.Regular.isChineseName(chineseName2))
 let bankCardNumber = '6223394932574507' // 鄞州农村合作银行(借记卡)
 console.log(utils.Regular.isBankCard(bankCardNumber)) */
 
-let account = 'admin'
-console.log(utils.Regular.isAccount(account, 5, 10))
-console.log(utils.Regular.isAccount('112233'))
+// let account = 'admin'
+// console.log(utils.Regular.isAccount(account, 5, 10))
+// console.log(utils.Regular.isAccount('112233'))
 
-console.log(utils.Regular.isPassword(111211111))
-console.log(utils.Regular.isPassword('111211111'))
+// console.log(utils.Regular.isPassword(111211111))
+// console.log(utils.Regular.isPassword('111211111'))
+
+
+// const id_card = '42032519790516571X'
+// console.log(utils.Regular.isIdCard(id_card))
+
+const url = 'https://www.baidu.com/'
+console.log(utils.Regular.isUrl(url))
